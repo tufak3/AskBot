@@ -59,7 +59,7 @@ export function formatRecentDialog(userId: number, maxMessages = 6): string {
   if (history.length === 0) return "(нет сообщений)";
   return history
     .slice(-maxMessages)
-    .map((m) => (m.role === "user" ? `👤 Клиент: ${m.content}` : `🤖 Бот: ${m.content}`))
+    .map((m) => (m.role === "user" ? `Клиент: ${m.content}` : `Бот: ${m.content}`))
     .join("\n");
 }
 

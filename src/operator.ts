@@ -18,17 +18,17 @@ const leadByMessageId = new Map<number, number>();
 export async function notifyOperator(api: Api, lead: Lead): Promise<void> {
   const username = lead.username ? `@${lead.username}` : "—";
   const text = [
-    "🔔 Новый контакт от клиента STEP UP",
+    "Новый контакт от клиента STEP UP",
     "",
-    `👤 Имя: ${lead.name}`,
-    `📞 Телефон: ${lead.phone}`,
-    `💬 Username: ${username}`,
-    `🆔 ID: ${lead.userId}`,
+    `Имя: ${lead.name}`,
+    `Телефон: ${lead.phone}`,
+    `Username: ${username}`,
+    `ID: ${lead.userId}`,
     "",
-    "📝 Диалог:",
+    "Диалог:",
     lead.dialog,
     "",
-    "↩️ Ответьте на это сообщение (reply), чтобы написать клиенту.",
+    "Ответьте на это сообщение (reply), чтобы написать клиенту.",
   ].join("\n");
 
   const sent = await api.sendMessage(config.operatorChatId, text);

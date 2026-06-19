@@ -20,7 +20,7 @@ import { logQuestion } from "./logger.js";
 
 /** Приветствие от лица поддержки магазина STEP UP (на «вы», дружелюбно-деловой тон). */
 const WELCOME_MESSAGE = [
-  "Здравствуйте! 👟 Это бот поддержки магазина STEP UP.",
+  "Здравствуйте! Это бот поддержки магазина STEP UP.",
   "",
   "Спрашивайте свободным текстом — про наличие и цены, доставку, оплату или режим работы.",
   "Я на связи круглосуточно. Если вопрос окажется сложным — подключу живого менеджера.",
@@ -41,12 +41,12 @@ const ASK_CONTACT =
   "Если передумали — напишите «отмена».";
 
 const THANKS_CONTACT =
-  "Спасибо! Передал ваш вопрос менеджеру — он свяжется с вами в ближайшее время. 🙌";
+  "Спасибо! Передал ваш вопрос менеджеру — он свяжется с вами в ближайшее время.";
 
 const CANCEL_CONTACT = "Хорошо, отменил. Чем ещё могу помочь?";
 
 /** Клавиатура с кнопкой «Поделиться контактом». */
-const contactKeyboard = new Keyboard().requestContact("📞 Поделиться контактом").resized().oneTime();
+const contactKeyboard = new Keyboard().requestContact("Поделиться контактом").resized().oneTime();
 
 /** Имя клиента из доступных полей Telegram. */
 function fullName(first?: string, last?: string, fallback = "Клиент"): string {
@@ -90,7 +90,7 @@ export function createBot(): Bot {
       const targetUserId = getClientByOperatorReply(ctx.message.reply_to_message.message_id);
       if (targetUserId) {
         await bot.api.sendMessage(targetUserId, `Ответ от оператора:\n${userText}`);
-        await ctx.reply("✅ Отправлено клиенту.");
+        await ctx.reply("Отправлено клиенту.");
         return;
       }
     }

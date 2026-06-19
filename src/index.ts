@@ -15,7 +15,7 @@ function startHealthServer(): void {
     res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
     res.end("AskBot is running");
   }).listen(port, () => {
-    console.log(`🌐 HTTP health-сервер слушает порт ${port}.`);
+    console.log(`HTTP health-сервер слушает порт ${port}.`);
   });
 }
 
@@ -36,7 +36,7 @@ function main(): void {
 
   bot.start({
     onStart: (info) => {
-      console.log(`✅ Бот @${info.username} запущен (long polling).`);
+      console.log(`Бот @${info.username} запущен (long polling).`);
     },
   });
 }
