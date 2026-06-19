@@ -1,0 +1,21 @@
+# Render Blueprint для AskBot (репозиторий = эта папка bot).
+# Деплой: Render → New → Blueprint → выбрать репозиторий.
+# Значения переменных задаются в дашборде Render, не здесь.
+services:
+  - type: web
+    name: askbot
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GOOGLE_SHEET_ID
+        sync: false
+      - key: OPERATOR_CHAT_ID
+        sync: false
+      - key: GOOGLE_SERVICE_ACCOUNT_JSON
+        sync: false

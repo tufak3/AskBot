@@ -1,0 +1,22 @@
+# Зависимости
+node_modules/
+
+# Сборка
+dist/
+
+# Секреты — НИКОГДА не коммитить
+.env
+.env.local
+*.key
+*.json.key
+service-account*.json
+
+# Логи
+*.log
+npm-debug.log*
+
+# ОС / редакторы
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
