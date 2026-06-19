@@ -2,7 +2,7 @@ import { Bot, Keyboard } from "grammy";
 import { config } from "./config.js";
 import { generateReply } from "./llm.js";
 import { getKnowledgeBase } from "./knowledge.js";
-import { getHistory, appendMessage } from "./conversation.js";
+import { getHistory, appendMessage, formatRecentDialog } from "./conversation.js";
 import {
   wantsHuman,
   isCancel,
@@ -68,14 +68,13 @@ export function createBot(): Bot {
   bot.on("message:contact", async (ctx) => {
     const userId = ctx.from.id;
     const contact = ctx.message.contact;
-    const reason = getReason(userId);
 
     await notifyOperator(bot.api, {
       name: fullName(contact.first_name, contact.last_name, ctx.from.first_name),
       phone: contact.phone_number,
       username: ctx.from.username,
       userId,
-      reason,
+      dialog: formatRecentDialog(userId),
     });
 
     clearAwaitingContact(userId);
@@ -110,7 +109,7 @@ export function createBot(): Bot {
           phone,
           username: ctx.from.username,
           userId,
-          reason: getReason(userId),
+          dialog: formatRecentDialog(userId),
         });
         clearAwaitingContact(userId);
         await ctx.reply(THANKS_CONTACT, { reply_markup: { remove_keyboard: true } });

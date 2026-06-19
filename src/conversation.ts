@@ -53,6 +53,16 @@ export function appendMessage(userId: number, message: ChatMessage): void {
   session.lastActivity = now;
 }
 
+/** Форматирует последние сообщения диалога для передачи оператору. */
+export function formatRecentDialog(userId: number, maxMessages = 6): string {
+  const history = getHistory(userId);
+  if (history.length === 0) return "(нет сообщений)";
+  return history
+    .slice(-maxMessages)
+    .map((m) => (m.role === "user" ? `👤 Клиент: ${m.content}` : `🤖 Бот: ${m.content}`))
+    .join("\n");
+}
+
 /** Удаляет устаревшие сессии — чтобы память не росла из-за неактивных пользователей. */
 export function cleanupExpiredSessions(): void {
   const now = Date.now();

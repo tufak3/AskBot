@@ -7,7 +7,7 @@ export interface Lead {
   phone: string;
   username?: string;
   userId: number;
-  reason: string;
+  dialog: string;
 }
 
 // message_id уведомления у оператора → userId клиента.
@@ -24,7 +24,9 @@ export async function notifyOperator(api: Api, lead: Lead): Promise<void> {
     `📞 Телефон: ${lead.phone}`,
     `💬 Username: ${username}`,
     `🆔 ID: ${lead.userId}`,
-    `❓ Повод: ${lead.reason}`,
+    "",
+    "📝 Диалог:",
+    lead.dialog,
     "",
     "↩️ Ответьте на это сообщение (reply), чтобы написать клиенту.",
   ].join("\n");
